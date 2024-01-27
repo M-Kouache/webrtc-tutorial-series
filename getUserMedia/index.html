@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>WebRTC - getUserMedia</title>
+  </head>
+  <body class="p-5 bg-gray-900 h-screen">
+    <div class="p-2 rounded-lg bg-white">
+      <div class="px-4 sm:px-0 mb-4">
+        <h3 class="text-base font-semibold leading-7 text-gray-900">
+          WebRTC - getUserMedia
+        </h3>
+        <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">
+          An example of how capture video and audio with getUserMedia api.
+        </p>
+      </div>
+      <div
+        class="relative flex items-center justify-center border-2 border-gray-500 rounded-lg h-[80vh]"
+      >
+        <video id="localStream" class="w-full h-full" autoplay playsinline></video>
+        <div id="no-data-label" class="text-lg text-gray-400 absolute">
+          No data to display
+        </div>
+        <div class="absolute bottom-4">
+          <button
+            onclick="initMediaCapture()"
+            id="init-call-btn"
+            class="bg-green-700 px-2 py-1 rounded-xl text-white disabled:bg-green-400 disabled:cursor-not-allowed"
+          >
+            Capture audio/video
+          </button>
+          <button
+              onclick="closeMediaCapture()"
+            id="close-call-btn"
+            class="bg-red-700 px-4 py-1 rounded-xl text-white disabled:bg-red-200 disabled:cursor-not-allowed"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js" ></script>
+  </body>
+</html>
