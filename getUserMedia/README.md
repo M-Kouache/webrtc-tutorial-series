@@ -2,7 +2,7 @@ this example on how to use WebRTC's getUserMedia API to capture audio and video 
 
 clone repo and serve file with python3 `http.server`
 
-bash```
+```bash
 python3 -m http.server 8000
 ```
 happy hacking :wink:
