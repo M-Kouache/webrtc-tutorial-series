@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>WebRTC - RTCPeerConnection</title>
+</head>
+  <body class="p-5 bg-gray-900 h-screen">
+    <div class="p-2 rounded-lg bg-white">
+      <div class="px-4 sm:px-0 mb-4">
+        <h3 class="text-base font-semibold leading-7 text-gray-900">
+          WebRTC - RTCPeerConnection
+        </h3>
+        <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">
+          An example of how establish a connection between to RTC peers.
+        </p>
+      </div>
+      <div
+        class="relative flex items-center justify-center border-2 border-gray-500 rounded-lg h-[80vh]"
+      >
+        <div class="p-2 flex justify-between items-center w-full h-full">
+            <div class="mx-1 border-2 border-gray-200 w-full h-full overflow-hidden rounded-lg">
+                <video id="localStream" class="w-full" autoplay playsinline></video>
+            </div>
+            <div class="mx-1 border-2 border-gray-200 w-full h-full overflow-hidden rounded-lg">
+                <video id="remoteStream" class="w-full" autoplay playsinline></video>
+            </div>
+        </div>
+        <div id="no-data-label" class="text-lg text-black absolute rounded-lg px-2 py-1 bg-gray-200 shadow-lg">
+          No data to display
+        </div>
+        <div class="absolute bottom-8 bg-gray-300 p-2 rounded-xl shadow-lg">
+          <button
+            id="start-btn"
+            class="bg-indigo-700 px-2 py-1 rounded-xl text-white disabled:bg-indigo-400 disabled:cursor-not-allowed"
+          >
+            Start
+          </button>
+          <button
+            id="call-btn"
+            class="bg-green-700 px-4 py-1 rounded-xl text-white disabled:bg-green-200 disabled:cursor-not-allowed"
+          >
+            Call
+          </button>
+          <button
+            id="hangup-btn"
+            class="bg-red-700 px-4 py-1 rounded-xl text-white disabled:bg-red-200 disabled:cursor-not-allowed"
+          >
+            HangUp
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="app.js" ></script>
+</html>
+
+
