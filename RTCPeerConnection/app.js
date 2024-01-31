@@ -42,9 +42,13 @@ function createRemotePeerConnection() {
 
 // Function to add audio and video streams to the local peer connection
 async function addLocalStream() {
-  localStream = await navigator.mediaDevices.getUserMedia(constraints);
-  document.getElementById("localStream").srcObject = localStream;
-  callBtn.disabled = false;
+  try {
+    localStream = await navigator.mediaDevices.getUserMedia(constraints);
+    document.getElementById("localStream").srcObject = localStream;
+    callBtn.disabled = false;
+  } catch (e) {
+    console.error("Error accessing media devices:", error);
+  }
 }
 
 function addStreamToPeerConnection() {
@@ -63,12 +67,6 @@ async function handleICECandidateEvent(peer, event) {
   }
 }
 
-// Function to create a data channel for peer-to-peer data exchange
-function createDataChannel() {
-  const dataChannel = localPeerConnection.createDataChannel("myDataChannel");
-  // Add event listeners for data channel events
-}
-
 // Function to initiate the connection
 async function startConnection() {
   createLocalPeerConnection();
@@ -82,14 +80,14 @@ async function startConnection() {
   try {
     localPeerConnection.setLocalDescription(offer);
   } catch (e) {
-    console.log("error while creatting offer", e);
+    console.log("error while setting setLocalDescription", e);
   }
 
   // Setting the offer to the remote peer
   try {
     remotePeerConnection.setRemoteDescription(offer);
   } catch (e) {
-    console.log("error while creatting offer", e);
+    console.log("error while setting setRemoteDescription", e);
   }
   try {
     handleRemoteOffer(offer);
@@ -115,17 +113,17 @@ function handleTrackEvent(event) {
 }
 
 function hangup() {
-   const videoElement = document.getElementById('localStream')
+  const videoElement = document.getElementById("localStream");
   localPeerConnection.close();
   remotePeerConnection.close();
   localPeerConnection = null;
   remotePeerConnection = null;
   localStream = null;
-    videoElement.pause();
-    videoElement.srcObject.getTracks().forEach((track) => {
-      track.stop();
-    });
-    hangupBtn.disabled = true;
+  videoElement.pause();
+  videoElement.srcObject.getTracks().forEach((track) => {
+    track.stop();
+  });
+  hangupBtn.disabled = true;
   callBtn.disabled = true;
   startBtn.desabled = false;
 }
